@@ -20,7 +20,7 @@ sudo chown -R ruser:ruser /home/ruser/R/
 cat <<EOT >> /home/vagrant/install-packages.R
 packages.list <- c("tidyverse", "fpp", "xts", "XLConnect", "imputeTS",
                    "reshape2", "plumber")
-install.dir <- ""/home/ruser/R/x86_64-redhat-linux-gnu-library/3.3"
+install.dir <- "/home/ruser/R/x86_64-redhat-linux-gnu-library/3.3"
 
 install.packages(packages.list, install.dir, repos="http://cran.rstudio.com")
 EOT
