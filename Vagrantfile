@@ -38,7 +38,8 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  # Uncomment the first line in a Windows 10 system
+  #config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   config.vm.synced_folder "./shared_data", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
@@ -55,6 +56,13 @@ Vagrant.configure("2") do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
+
+  # Set up the proxies for the VM using the proxyconf plugin
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http = "http://proxy.corp.globant.com:3128/"
+    config.proxy.https = "http://proxy.corp.globant.com:3128/"
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
   # such as FTP and Heroku are also available. See the documentation at
